@@ -26,3 +26,8 @@ elif (
     print('You win! 🎉')
 else:
     print('Computer wins! 🤖')
+
+
+# Homework:
+# 1. Make this code loop infinitely so that you can play forever without
+# having to re-run the script each time

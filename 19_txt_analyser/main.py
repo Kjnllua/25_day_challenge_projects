@@ -1,6 +1,8 @@
 from collections import Counter
 import re
 
+
+# 1. Function to analyse text files
 def analyze_text_file(filename: str) -> None:
     with open(filename, 'r') as f:
         text: str = f.read()
@@ -9,7 +11,7 @@ def analyze_text_file(filename: str) -> None:
     word_count: int = len(words)
     comma_count: int = text.count(',')
     char_count_incl_ws: int = len(text)
-    whitespace_count: int = sum(1 for c in text if c.isspace())
+    whitespace_count: int = sum(c.isspace() for c in text)
     top_words: list[tuple[str, int]] = Counter(words).most_common(3)
 
     print('-' * 30)
@@ -19,9 +21,16 @@ def analyze_text_file(filename: str) -> None:
     print(f'Whitespace characters: {whitespace_count}')
     print('')
     print('Top 3 most used words:')
+
     for word, count in top_words:
-        print(f'- {word}: {count}')
+        print(f' > {word}: {count}')
     print('-' * 30)
 
+
+# 2. Call the function
 if __name__ == '__main__':
     analyze_text_file('sample.txt')
+
+# Homework:
+# 1. Count punctuation marks (`.`, `!`, `?`, `:`, `;`).
+# 2. Calculate the average word length.

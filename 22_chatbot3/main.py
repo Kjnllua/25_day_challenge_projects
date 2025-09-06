@@ -2,6 +2,7 @@ from dataclasses import dataclass
 import json
 import re
 
+
 # 1. Create the model
 @dataclass
 class Response:
@@ -56,8 +57,13 @@ def get_response(text: str, responses: list[Response]) -> str:
     matches: dict[str, float] = {}
 
     for response in responses:
+        # Updates the dictionary to contain the score of each bot response in relation to our input
         matches[response.response] = match_rating(text, response)
 
+    # Debugging
+    # print(matches)
+
+    # Checks all the keys and returns the one with the highest value
     best_match: str = max(matches, key=matches.get)  # type: ignore
     return 'I don\'t understand... [0%]' if matches[best_match] == 0 else f'{best_match} [{matches[best_match]:.0%}]'
 
@@ -73,3 +79,7 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
+
+# Homework:
+# 1. Add more responses to the chatbot.
+# 2. Convert this code to use an OOP approach.

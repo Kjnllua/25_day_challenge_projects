@@ -13,13 +13,13 @@ yearly_expenses: float = sum([rent, food, taxes, other_expenses]) * 12
 yearly_savings: float = yearly_income - yearly_expenses
 
 # Prepare data for plotting
-monthly_categories = ['Income', 'Rent', 'Food', 'Taxes', 'Other']
-monthly_amounts = [monthly_income, rent, food, taxes, other_expenses]
-monthly_colors = ['green', 'red', 'red', 'red', 'red']
+monthly_categories: list[str] = ['Income', 'Rent', 'Food', 'Taxes', 'Other']
+monthly_amounts: list[float] = [monthly_income, rent, food, taxes, other_expenses]
+monthly_colors: list[str] = ['green', 'red', 'red', 'red', 'red']
 
-yearly_categories = ['Income', 'Expenses', 'Savings']
-yearly_amounts = [yearly_income, yearly_expenses, yearly_savings]
-yearly_colors = ['green', 'red', 'green']
+yearly_categories: list[str] = ['Income', 'Expenses', 'Savings']
+yearly_amounts: list[float] = [yearly_income, yearly_expenses, yearly_savings]
+yearly_colors: list[str] = ['green', 'red', 'green']
 
 # Create subplots (1 row, 2 columns)
 fig, axs = plt.subplots(1, 2, figsize=(10, 6))
@@ -38,3 +38,5 @@ axs[1].set_ylabel('Amount ($)')
 # Adjust layout and display
 plt.tight_layout()
 plt.show()
+
+

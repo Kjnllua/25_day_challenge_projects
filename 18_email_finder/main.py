@@ -36,3 +36,8 @@ def list_emails(path: str) -> None:
 
 if __name__ == '__main__':
     list_emails('file.txt')
+
+
+# Homework:
+# 1. Add an option that filters out all the lesser-known domains and keeps only
+# the most popular ones (gmail, yahoo, etc, etc.)

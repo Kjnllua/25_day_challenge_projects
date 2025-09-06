@@ -34,6 +34,6 @@ custom_print([], include_types=True, sep=', ', end='!\n')
 
 
 # Homework:
-# 1. Add a field that counts the number of elements being printed
-# 2. Add your very own feature to the custom print function
+# 1. Add a field that counts the number of elements being printed.
+# 2. Add your very own feature to the custom print function.
 

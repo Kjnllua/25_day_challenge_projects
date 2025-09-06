@@ -1,3 +1,4 @@
+# 1. Create the concept of a car in this world
 class Car:
     def __init__(self, licence_plate: str):
         if len(licence_plate) != 6:
@@ -6,6 +7,7 @@ class Car:
         self.license_plate = licence_plate
 
 
+# 2. Create a place to store stolen cars
 class StolenCarRegistry:
     def __init__(self) -> None:
         # Example: Set of license plates that are stolen
@@ -19,6 +21,7 @@ class StolenCarRegistry:
         return plate.upper() in self.stolen_plates
 
 
+# 3. Check for stolen cars
 def main() -> None:
     registry: StolenCarRegistry = StolenCarRegistry()
     # Populate with some stolen plates
@@ -36,3 +39,8 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
+
+# Homework:
+# 1. Add a way to remove stolen cars from the StolenCarRegistry.
+# 2. Add functionality that counts the total amount of stolen cars.
+# 3. Add functionality that displays all the stolen plates.

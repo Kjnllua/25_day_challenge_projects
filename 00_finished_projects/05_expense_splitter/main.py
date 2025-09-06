@@ -48,7 +48,7 @@ for name, share in people_dict.items():
 print('---------------------')
 
 # Homework:
-# 1. Handle what happens if the user taps on enter without specifying a total bill amount
-# 2. Handle what happens if the user doesn't add and people to the bill
-# 3. Make it so the user can only charge up to 100% of the bill
-# 4. Add a field to the summary that tells the user the money that wasn't split by anyone
+# 1. Handle what happens if the user taps on enter without specifying a total bill amount.
+# 2. Handle what happens if the user doesn't add and people to the bill.
+# 3. Make it so the user can only charge up to 100% of the bill.
+# 4. Add a field to the summary that tells the user the money that wasn't split by anyone.

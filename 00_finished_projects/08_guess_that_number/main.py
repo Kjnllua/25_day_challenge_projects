@@ -36,4 +36,4 @@ while True:
 
 # Homework:
 # 1. Add a score keeping mechanism that includes the amount of tries it took to guess
-# the correct number
+# the correct number.

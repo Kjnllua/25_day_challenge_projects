@@ -1,9 +1,8 @@
-# WIP
 from collections import Counter
 from time import sleep
 
 
-# Create a car blueprint
+# 1. Create a car blueprint
 class Car:
     def __init__(self, brand: str, color: str, model: int) -> None:
         self.brand = brand
@@ -19,18 +18,19 @@ class Car:
         print(f'{self.brand} {self.model} [{self.color}] completed journey...')
 
 
-# Test that the car works
+# 2. Test that the car works
 def test_car() -> None:
     volvo: Car = Car('Volvo', 'Red', 200)
     volvo.drive(6, 140)
 
 
-# Create a car factory
+# 3. Create a car garage
 cars: list[Car] = [Car('Volvo', 'Red', 200),
                    Car('Volvo', 'Red', 200),
                    Car('Volvo', 'Red', 200), ]
 
 
+# 4. Create more cars
 def create_cars() -> None:
     # Everything is case-sensitive here
     brand: str = input('Enter the brand: ')
@@ -47,26 +47,32 @@ def create_cars() -> None:
         print('Error, please enter numbers as digits only.')
 
 
+# 5. Display the stock
 def display_stock() -> None:
     car_tuples: list[tuple[str, str, int]] = [(car.brand, car.color, car.model) for car in cars]
     counter: Counter[tuple[str, str, int]] = Counter(car_tuples)
 
     for (brand, model, color), count in counter.items():
-        print(f'{brand} {model} [{color}]: {count}')
+        print(f'{brand} {model} [{color}]: {count} in stock')
 
 
-print('Type: "create" to create cars and "display" to display current stock')
-while True:
-    user_input: str = input('You: ').lower().strip()
+def main() -> None:
+    print('Type: "create" to create cars and "display" to display current stock')
+    while True:
+        user_input: str = input('You: ').lower().strip()
 
-    if user_input == 'create':
-        create_cars()
-    elif user_input == 'display':
-        display_stock()
-    else:
-        print(f'Unknown command: "{user_input}"')
+        if user_input == 'create':
+            create_cars()
+        elif user_input == 'display':
+            display_stock()
+        else:
+            print(f'Unknown command: "{user_input}"')
+
+
+if __name__ == '__main__':
+    main()
 
 # Homework:
-# 1. Add a function that allows you to sell cars:
-# - It must be able to check stock and only sell if there's enough cars
-# 2. Create a bank to store the money you're making with your car sales
+# 1. Add a function that allows you to sell cars. It must be able to check stock
+# and only sell if there's enough cars.
+# 2. Create a bank to store the money you're making with your car sales.

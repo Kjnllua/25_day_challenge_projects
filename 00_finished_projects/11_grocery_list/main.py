@@ -1,5 +1,5 @@
 # 1. Create a way to store the data
-groceries: dict[str, int] = dict()
+db: dict[str, int] = dict()
 
 
 # 2. Create an easy way to write system messages
@@ -13,7 +13,7 @@ def add_item() -> None:
 
     try:
         quantity: int = int(input('Enter a quantity: '))
-        groceries[name] = quantity
+        db[name] = quantity
         announcement(f'Added "{name}" x {quantity}')
     except ValueError:
         announcement('Error, please enter a valid number.')
@@ -22,16 +22,16 @@ def add_item() -> None:
 def remove_item() -> None:
     name: str = input('Enter an item: ').lower().strip()
     try:
-        groceries.pop(name)
+        db.pop(name)
         announcement(f'Successfully removed "{name}"')
     except KeyError:
         announcement(f'"{name}" not found in groceries.')
 
 
 def read_list() -> None:
-    if groceries:
+    if db:
         print('-' * 20)
-        for k, v in groceries.items():
+        for k, v in db.items():
             print(f'{k.capitalize()}: {v}')
 
         print('-' * 20)
@@ -74,6 +74,6 @@ while True:
     get_option(user_input)
 
 # Homework:
-# 1. Make it so that if the user adds a wrong quantity, it allows them to try again
-# immediately instead of asking them to enter the name and quantity again
+# 1. Make it so that if the user adds a wrong value for quantity, it allows them to try again
+# immediately instead of asking them to enter the name and quantity again.
 # 2. Add an option that allows the user to modify the quantity of any item.

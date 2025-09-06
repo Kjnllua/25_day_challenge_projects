@@ -20,7 +20,7 @@
     "required_words": []
   },
   {
-    "response": "Thank you!",
+    "response": "Same!",
     "words": ["i", "love", "coding"],
     "required_words": ["love", "coding"]
   }

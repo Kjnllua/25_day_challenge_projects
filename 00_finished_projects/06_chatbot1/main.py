@@ -30,3 +30,7 @@ while True:
     user_input: str = input('You: ')
     print(user_input)
     print(f'Bot: {response(user_input)}')
+
+
+# Homework:
+# 1. Add your own custom responses to the bot!

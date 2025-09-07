@@ -17,8 +17,8 @@ while True:
         people.append(input_name)
 
 # 3. Splitting the bill
-print('3. Now, specify the percentage each person will pay.\n'
-      '(Type "even" at any time to split the bill equally.)')
+print('3. Now, specify the percentage each person will pay.')
+print('(Type "even" at any time to split the bill equally.)')
 
 # Create a dictionary that holds how much each person owes
 people_dict: dict[str, float] = {}

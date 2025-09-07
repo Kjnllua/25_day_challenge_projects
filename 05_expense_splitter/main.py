@@ -33,7 +33,7 @@ for person in people:
         percent_input = '0'
 
     # Typing 'even' will split the bill evenly
-    if percent_input == 'even':
+    if percent_input.strip() == 'even':
         for nested_person in people:
             people_dict[nested_person] = (1 / len(people)) * total_bill
         break
@@ -51,4 +51,3 @@ print('---------------------')
 # 1. Handle what happens if the user taps on enter without specifying a total bill amount.
 # 2. Handle what happens if the user doesn't add and people to the bill.
 # 3. Make it so the user can only charge up to 100% of the bill.
-# 4. Add a field to the summary that tells the user the money that wasn't split by anyone.

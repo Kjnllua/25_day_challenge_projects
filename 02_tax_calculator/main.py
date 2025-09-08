@@ -13,3 +13,6 @@ print('-' * 40)
 print(f'Yearly Tax (Base):        ${taxed:,.2f}')
 print('=' * 40)
 
+# Homework:
+# 1. Add projections for how much tax you'd pay if you
+# doubled and tripled your income.

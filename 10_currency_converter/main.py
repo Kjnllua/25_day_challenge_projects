@@ -19,12 +19,12 @@ def convert(user_input: str, rates: dict[str, float]) -> None:
     currency_codes: list[str] = list(rates.keys())
     input_currency_code: str = user_input[-3:]  # Gets the last three characters of a string
 
-    # Check whether user specifies a valid currency
+    # Check whether the user specifies a valid currency
     if input_currency_code not in currency_codes:
         print(f'Currency code: "{input_currency_code}" is invalid.')
         return
 
-    # Handle input
+    # Check whether the specifies a valid amount
     try:
         input_amount: float = float(user_input[:-3])  # Gets everything besides the last three characters
     except ValueError:

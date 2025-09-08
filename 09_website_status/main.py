@@ -15,7 +15,7 @@ def check_website(url: str, timeout: int = 10) -> None:
     try:
         response: Response = requests.get(url, timeout=timeout)
     except Exception as e:
-        print(f'ERROR        : {e}')
+        print(f'ERROR: {e}')
         return
 
     # 3. Organise the data

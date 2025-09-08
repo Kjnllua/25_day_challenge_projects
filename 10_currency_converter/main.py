@@ -16,7 +16,8 @@ def load_exchange_rates() -> dict[str, float]:
 
 
 # 3. Convert the currency
-def convert_currency(user_input: str, currency_codes: list[str], exchange_rates: dict[str, float]) -> None:
+def convert_currency(user_input: str, currency_codes: list[str],
+                     exchange_rates: dict[str, float]) -> None:
     for currency_code in currency_codes:
         # Check if user entered a valid currency code
         if user_input.endswith(currency_code):
@@ -59,7 +60,7 @@ def main() -> None:
         user_input: str = input('Convert: ').strip().upper()
 
         if user_input == 'LIST':
-            print('Available currencies:', ', '.join(currency_codes))
+            print(f'Available currencies: {', '.join(currency_codes)}')
             continue
         elif user_input == 'QUIT':
             print('Exiting.')

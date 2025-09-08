@@ -1,4 +1,3 @@
-import time
 import requests
 from requests import Response
 
@@ -15,7 +14,7 @@ def check_website(url: str, timeout: int = 10) -> None:
     print(f'\n=== Website diagnostics for {url} ===')
     try:
         response: Response = requests.get(url, timeout=timeout)
-    except requests.RequestException as e:
+    except Exception as e:
         print(f'ERROR        : {e}')
         return
 
@@ -42,5 +41,5 @@ if __name__ == '__main__':
 
 # Homework:
 # 1. Split "check_website()" into two functions. Make it so that "check_website()" returns
-# data that you can then insert into another function called "display(data)" to see the
+# data that you can then insert into another function called "display_website(data)" to see the
 # information in the console.

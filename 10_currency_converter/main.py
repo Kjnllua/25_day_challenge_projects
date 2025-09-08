@@ -26,7 +26,7 @@ def convert(user_input: str, rates: dict[str, float]) -> None:
 
     # Handle input
     try:
-        input_amount: float = float(user_input[:-3]) # Gets everything besides the last three characters
+        input_amount: float = float(user_input[:-3])  # Gets everything besides the last three characters
     except ValueError:
         print(f'"{user_input}" is invalid. Try something like: "10 AUD"')
         return
@@ -67,3 +67,8 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
+
+# Homework:
+# 1. Split "convert()" into two functions:
+# - One that returns all the conversions as a dictionary.
+# - One that displays the converted data.

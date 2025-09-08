@@ -37,7 +37,7 @@ def check_website(url: str, timeout: int = 10) -> None:
 
 
 if __name__ == '__main__':
-    check_website('apple.com')
+    check_website('www.amazon.com')
 
 # Homework:
 # 1. Split "check_website()" into two functions. Make it so that "check_website()" returns

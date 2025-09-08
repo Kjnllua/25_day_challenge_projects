@@ -2,7 +2,7 @@ import json
 
 
 # 1. Create instructions
-def show_instructions() -> None:
+def instructions() -> None:
     print('1. Type <amount><CURRENCY>, e.g. 10USD, to convert a currency.')
     print('2. Type LIST to list available currencies.')
     print('3. Type QUIT to exit.')
@@ -11,63 +11,58 @@ def show_instructions() -> None:
 # 2. Load the data
 def load_exchange_rates() -> dict[str, float]:
     with open('currencies.json', 'r') as file:
-        exchange_rates: dict[str, float] = json.load(file)
-        return exchange_rates
+        return json.load(file)
 
 
-# 3. Convert the currency
-def convert_currency(user_input: str, currency_codes: list[str],
-                     exchange_rates: dict[str, float]) -> None:
+def convert(user_input: str, rates: dict[str, float]) -> None:
+    # Prepare data
+    currency_codes: list[str] = list(rates.keys())
+    input_currency_code: str = user_input[-3:]  # Gets the last three characters of a string
+
+    # Check whether user specifies a valid currency
+    if input_currency_code not in currency_codes:
+        print(f'Currency code: "{input_currency_code}" is invalid.')
+        return
+
+    # Handle input
+    try:
+        input_amount: float = float(user_input[:-3]) # Gets everything besides the last three characters
+    except ValueError:
+        print(f'"{user_input}" is invalid. Try something like: "10 AUD"')
+        return
+
+    # Base conversion - USD is the base currency in the file so any currency we specify
+    # will be converted to that first.
+    base_conversion: float = input_amount / rates[input_currency_code]
+
+    # Display the conversion
+    print(f'{round(input_amount, 2):>16} {input_currency_code}')
+    print('-' * 20)
     for currency_code in currency_codes:
-        # Check if user entered a valid currency code
-        if user_input.endswith(currency_code):
-            try:
-                # Extract amount by removing the 3-letter currency code
-                input_amount: float = float(user_input[:-3])
-            except ValueError:
-                print('Invalid amount.')
-                break
-
-            # Get exchange rate for the input currency
-            source_currency_rate: float = exchange_rates[currency_code]
-            base_amount: float = input_amount / source_currency_rate
-
-            # Display conversion results
-            print(f'{int(input_amount):>16} {currency_code}')
-            print('-' * 20)
-            for target_currency in currency_codes:
-                if target_currency == currency_code:  # Skip converting to same currency
-                    continue
-                converted_amount: float = base_amount * exchange_rates[target_currency]
-                print(f'= {int(converted_amount):>14} {target_currency}')
-            print('-' * 20)
-            break
-    else:
-        print('Invalid input. Please check currency code.')
+        converted_amount: float = base_conversion * rates[currency_code]
+        print(f'= {round(converted_amount, 2):>14} {currency_code}')
+    print('-' * 20)
 
 
-# 4. Put it all together
 def main() -> None:
     # 1. Display instructions
-    show_instructions()
+    instructions()
 
     # 2. Load exchange rate data
     exchange_rates: dict[str, float] = load_exchange_rates()
-    currency_codes: list[str] = list(exchange_rates.keys())
 
+    # 3. Run
     while True:
-        # 3. Get user input
-        user_input: str = input('Convert: ').strip().upper()
+        user_input: str = input('Convert: ').upper().strip()
 
         if user_input == 'LIST':
-            print(f'Available currencies: {', '.join(currency_codes)}')
+            print(f'Available currencies: {', '.join(exchange_rates.keys())}')
             continue
         elif user_input == 'QUIT':
             print('Exiting.')
             break
 
-        # 4. Process currency conversion
-        convert_currency(user_input, currency_codes, exchange_rates)
+        convert(user_input, exchange_rates)
 
 
 if __name__ == '__main__':

@@ -1,17 +1,17 @@
 import json
 
 
-# 1. Create instructions
+# 1. Load the data
+def load_exchange_rates() -> dict[str, float]:
+    with open('currencies.json', 'r') as file:
+        return json.load(file)
+
+
+# 2. Create instructions
 def instructions() -> None:
     print('1. Type <amount><CURRENCY>, e.g. 10USD, to convert a currency.')
     print('2. Type LIST to list available currencies.')
     print('3. Type QUIT to exit.')
-
-
-# 2. Load the data
-def load_exchange_rates() -> dict[str, float]:
-    with open('currencies.json', 'r') as file:
-        return json.load(file)
 
 
 def convert(user_input: str, rates: dict[str, float]) -> None:

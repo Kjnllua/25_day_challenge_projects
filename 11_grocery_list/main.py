@@ -68,10 +68,15 @@ def get_option(option: str) -> None:
 
 
 # 6. Start and loop the program
-display_options()
-while True:
-    user_input: str = input('You: ')
-    get_option(user_input)
+def main() -> None:
+    display_options()
+    while True:
+        user_input: str = input('You: ')
+        get_option(user_input)
+
+
+if __name__ == '__main__':
+    main()
 
 # Homework:
 # 1. Make it so that if the user adds a wrong value for quantity, it allows them to try again

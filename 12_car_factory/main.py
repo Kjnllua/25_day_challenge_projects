@@ -24,14 +24,8 @@ def test_car() -> None:
     volvo.drive(6, 140)
 
 
-# 3. Create a car garage
-cars: list[Car] = [Car('Volvo', 'Red', 200),
-                   Car('Volvo', 'Red', 200),
-                   Car('Volvo', 'Red', 200), ]
-
-
-# 4. Create more cars
-def create_cars() -> None:
+# 3. Create more cars
+def create_cars(cars: list[Car]) -> None:
     # Everything is case-sensitive here
     brand: str = input('Enter the brand: ')
     color: str = input('Enter the color: ')
@@ -47,8 +41,8 @@ def create_cars() -> None:
         print('Error, please enter numbers as digits only.')
 
 
-# 5. Display the stock
-def display_stock() -> None:
+# 4. Display the stock
+def display_stock(cars: list[Car]) -> None:
     car_tuples: list[tuple[str, str, int]] = [(car.brand, car.color, car.model) for car in cars]
     counter: Counter[tuple[str, str, int]] = Counter(car_tuples)
 
@@ -57,14 +51,18 @@ def display_stock() -> None:
 
 
 def main() -> None:
+    cars: list[Car] = [Car('Volvo', 'Red', 200),
+                       Car('Volvo', 'Red', 200),
+                       Car('Toyota', 'Green', 321)]
+
     print('Type: "create" to create cars and "display" to display current stock')
     while True:
         user_input: str = input('You: ').lower().strip()
 
         if user_input == 'create':
-            create_cars()
+            create_cars(cars)
         elif user_input == 'display':
-            display_stock()
+            display_stock(cars)
         else:
             print(f'Unknown command: "{user_input}"')
 

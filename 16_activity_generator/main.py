@@ -16,10 +16,14 @@ def load_data() -> list[Activity]:
     activities: list[Activity] = []
     with open('activities.json') as f:
         for activity in json.load(f):
-            activities.append(Activity(activity['activity'],
-                                       activity['type'],
-                                       activity['cost'],
-                                       activity['people']))
+            activities.append(
+                Activity(
+                    activity['activity'],
+                    activity['type'],
+                    activity['cost'],
+                    activity['people'],
+                )
+            )
 
         return activities
 

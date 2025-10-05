@@ -1,26 +1,28 @@
 import asyncio
 import requests
+from requests import Response
 from dataclasses import dataclass
 
 
 # 1. Model the data
 @dataclass
-class Response:
+class WebsiteResponse:
     url: str
     status: int | None
     reason: str
 
 
 # 2. Check an individual website
-async def check_website(url: str) -> Response:
+async def check_website(url: str) -> WebsiteResponse:
     if not url.startswith(('http://', 'https://')):
         url = f'https://{url}'
 
     try:
-        response = await asyncio.to_thread(requests.get, url)
-        return Response(url, response.status_code, response.reason)
+        # This is a simple trick we can use to convert something blocking
+        response: Response = await asyncio.to_thread(requests.get, url)
+        return WebsiteResponse(url, response.status_code, response.reason)
     except Exception as e:
-        return Response(url, None, str(e))
+        return WebsiteResponse(url, None, str(e))
 
 
 # 3. Check multiple websites
@@ -30,12 +32,13 @@ async def check_websites(urls: list[str], timeout: float = 5) -> None:
     # Gives us back websites in real time
     # If it takes longer than 5 seconds an exception is raised
     for completed_task in asyncio.as_completed(tasks, timeout=timeout):
-        response: Response = await completed_task
+        response: WebsiteResponse = await completed_task
 
         if response.status is not None:
             print(f'{response.url}: ✅ ONLINE ({response.status} {response.reason})')
         else:
-            print(f'{response.url}: ❌ OFFLINE ({response.reason})')
+            print(f'Could not retrieve information for: "{response.url}"')
+            # Include response.reason for more information
 
 
 async def main() -> None:
@@ -50,7 +53,7 @@ async def main() -> None:
         'www.amazon.com',
         'www.linkedin.com',
         'www.microsoft.com',
-        'www.github.com'
+        'www.github.com',
     ]
 
     print(f'Checking {len(urls)} websites...')

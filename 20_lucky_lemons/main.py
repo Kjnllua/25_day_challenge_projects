@@ -1,15 +1,20 @@
 import random
 import sys
+import time
 
 
 # 1. Create the blueprint
 class SlotMachine:
-    def __init__(self, remaining_credits: int) -> None:
-        self.credits = remaining_credits
+    def __init__(self, credits: int) -> None:
+        self.credits = credits
         self.symbols: dict[str, int] = {'🍒': 1, '🍊': 2, '🍋': 5}
 
     def spin(self, bet: int) -> None:
         # Make sure the user has enough credits
+        if bet <= 0:
+            print('Bet must be greater than 0...')
+            return
+
         if self.credits >= bet:
             self.update_credits(-bet)
         else:
@@ -18,10 +23,12 @@ class SlotMachine:
 
         # Spin and add 3 symbols to a list
         result: list[str] = []
-        for i in range(3):
-            # time.sleep(.3)
+        for _ in range(3):
+            time.sleep(0.2)
             landed: str = random.choice(list(self.symbols))
-            print(landed, end='')
+            print(landed, end='', flush=True)
+            # Flush forces the text to appear right away, instead of sitting
+            # in the buffer.
             result.append(landed)
 
         print()
@@ -31,11 +38,11 @@ class SlotMachine:
         print(f'Credits won: {winnings}')
 
         # Check if the user can continue playing
+        self.credits += winnings
         if self.credits == 0:
             print('Game over!')
             sys.exit()
         else:
-            self.credits += winnings
             print(f'Credits remaining: {self.credits}')
             print('-' * 30)
 
@@ -71,9 +78,14 @@ class SlotMachine:
 
 
 # 2. Run the code and play the game
-if __name__ == "__main__":
+def main() -> None:
     pokies: SlotMachine = SlotMachine(200)
     pokies.play()
+
+
+if __name__ == '__main__':
+    main()
+
 
 # Homework:
 # 1. Add a system that awards a player some credits for getting two in a row. Credits should only

@@ -1,10 +1,14 @@
 import re
 
 
-def extract_emails(text: str, unique_only: bool = True, case_sensitive: bool = True) -> list[str]:
+def extract_emails(
+    text: str, unique_only: bool = True, case_sensitive: bool = True
+) -> list[str]:
     # Comprehensive email regex pattern
-    email_pattern: str = (r'\b[A-Za-z0-9.!#$%&\'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?'
-                          r'(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*\.[A-Za-z]{2,}\b')
+    email_pattern: str = (
+        r'\b[A-Za-z0-9.!#$%&\'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?'
+        r'(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*\.[A-Za-z]{2,}\b'
+    )
 
     # Find all email addresses
     emails: list[str] = re.findall(email_pattern, text)
@@ -34,8 +38,12 @@ def list_emails(path: str) -> None:
         print('No emails found...')
 
 
-if __name__ == '__main__':
+def main() -> None:
     list_emails('file.txt')
+
+
+if __name__ == '__main__':
+    main()
 
 
 # Homework:

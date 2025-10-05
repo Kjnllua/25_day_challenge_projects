@@ -9,7 +9,7 @@ class PasswordValidator:
     @staticmethod
     def load_common_passwords() -> set[str]:
         with open('common_passwords.txt', 'r') as file:
-            return {line.strip() for line in file if line.strip()}
+            return {line.strip() for line in file if line}
 
     def is_common(self, password: str) -> bool:
         return password in self.common_passwords
@@ -45,17 +45,14 @@ def main() -> None:
 
     while True:
         password: str = input('Enter password: ').strip()
-        if validator.is_common(password):
-            print('❌ That is one of the top 10.000 most common passwords...')
-            continue
-
         rating: str = validator.rate(password)
         if rating == 'secure':
             print('✅ Your password is secure! ')
         elif rating == 'medium':
             print('⚠️ Your password is of medium strength.')
         else:
-            print('❌ Try adding symbols, uppercase letters, and increasing the length.')
+            print('⚠️ That password sucks!')
+            print('Try adding symbols, uppercase letters, and increasing the length.')
 
 
 if __name__ == '__main__':
@@ -63,7 +60,7 @@ if __name__ == '__main__':
 
 # Homework:
 # 1. Add functionality that tells the user exactly what they are missing to make their password
-# stronger, such as symbols, uppercase characters, and or more characters.
+# stronger, such as symbols, uppercase characters, and/or more characters.
 # 2. Add functionality that detects when a user adds too many sequential characters, such
 # as "aaa", "111", and so on.
 # 3. Check if the password contains digits as well to reach the 'secure' rating.

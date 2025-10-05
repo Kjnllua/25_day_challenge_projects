@@ -37,8 +37,10 @@ class ChatBot:
         elif contains(['weather'], text):
             return "It’s partly cloudy and 22 °C right now."
         elif contains(['help', 'commands'], text):
-            return ('I understand: hello/hi, goodbye/bye, what time is it/current time, '
-                    'weather, tomorrow (after weather), and help/commands.')
+            return (
+                'I understand: hello/hi, goodbye/bye, what time is it/current time, '
+                'weather, tomorrow (after weather), and help/commands.'
+            )
 
         return "Sorry... I can't answer that right now."
 
@@ -54,20 +56,24 @@ class ChatBot:
         print("Type 'help' for commands. Type 'bye' to quit.\n")
         while True:
             user_input: str = input('You: ')
-            bot_reply = bot.response(user_input)
-            print(f'{self.name}:', bot_reply)
+            bot_reply: str = self.response(user_input)
+            print(f'{self.name}: {bot_reply}')
 
             # exit if user said goodbye
             if contains(['bye', 'goodbye'], user_input):
                 break
 
             # remember after responding
-            bot.remember(user_input)
+            self.remember(user_input)
+
+
+def main() -> None:
+    bot: ChatBot = ChatBot('Bob')
+    bot.run()
 
 
 if __name__ == "__main__":
-    bot: ChatBot = ChatBot('Bob')
-    bot.run()
+    main()
 
 # Homework:
 # 1. Try creating more responses that use the chat history to ask follow-up questions.

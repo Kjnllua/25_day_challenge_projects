@@ -1,10 +1,10 @@
 # 1. Create the concept of a car in this world
 class Car:
-    def __init__(self, licence_plate: str):
+    def __init__(self, licence_plate: str) -> None:
         if len(licence_plate) != 6:
             raise ValueError('Invalid licence plate.')
 
-        self.license_plate = licence_plate
+        self.licence_plate = licence_plate
 
 
 # 2. Create a place to store stolen cars
@@ -31,10 +31,10 @@ def main() -> None:
     while True:
         plate: str = input('Enter car licence plate: ').strip()
         car: Car = Car(plate)
-        if registry.is_stolen(car.license_plate):
-            print(f'❌ Car with plate "{car.license_plate.upper()}" is: REPORTED STOLEN!')
+        if registry.is_stolen(car.licence_plate):
+            print(f'❌ Car with plate "{car.licence_plate}" is: REPORTED STOLEN!')
         else:
-            print(f'✅ Car with plate "{car.license_plate.upper()}" is: OK')
+            print(f'✅ Car with plate "{car.licence_plate}" is: OK')
 
 
 if __name__ == '__main__':

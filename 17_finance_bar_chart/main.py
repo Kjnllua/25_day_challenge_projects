@@ -1,10 +1,11 @@
 import matplotlib.pyplot as plt
 
 # Main data
-monthly_income: float = 8500
+monthly_income: float = 10000
 rent: float = 1000
 food: float = 2500
-taxes: float = monthly_income * 0.10
+tax_rate: float = 0.22
+taxes: float = monthly_income * tax_rate
 other_expenses: float = 2000
 
 # Yearly
@@ -16,12 +17,12 @@ yearly_savings: float = yearly_income - yearly_expenses
 monthly_categories: list[str] = ['Income', 'Rent', 'Food', 'Taxes', 'Other']
 monthly_amounts: list[float] = [monthly_income, rent, food, taxes, other_expenses]
 monthly_colors: list[str] = ['green', 'red', 'red', 'red', 'red']
-
 yearly_categories: list[str] = ['Income', 'Expenses', 'Savings']
 yearly_amounts: list[float] = [yearly_income, yearly_expenses, yearly_savings]
 yearly_colors: list[str] = ['green', 'red', 'green']
 
-# Create subplots (1 row, 2 columns)
+# Create subplots (1 row, 2 columns) -
+# set up the figure with two side-by-side charts
 fig, axs = plt.subplots(1, 2, figsize=(10, 6))
 
 # Monthly bar chart
@@ -36,7 +37,5 @@ axs[1].set_title('Yearly Financial Overview')
 axs[1].set_ylabel('Amount ($)')
 
 # Adjust layout and display
-plt.tight_layout()
+plt.tight_layout()  # Makes sure that the labels will fit and not overlap
 plt.show()
-
-

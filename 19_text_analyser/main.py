@@ -3,7 +3,7 @@ import re
 
 
 # 1. Function to analyse text files
-def analyze_text_file(filename: str) -> None:
+def analyse(filename: str) -> None:
     with open(filename, 'r') as f:
         text: str = f.read()
 
@@ -27,9 +27,13 @@ def analyze_text_file(filename: str) -> None:
     print('-' * 30)
 
 
-# 2. Call the function
+def main() -> None:
+    analyse('sample.txt')
+
+
 if __name__ == '__main__':
-    analyze_text_file('sample.txt')
+    main()
+
 
 # Homework:
 # 1. Count punctuation marks (`.`, `!`, `?`, `:`, `;`).

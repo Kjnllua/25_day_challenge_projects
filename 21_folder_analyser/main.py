@@ -49,22 +49,24 @@ def analyse_folder() -> Stats | None:
             # Get file extension (everything after the last dot)
             name, extension = os.path.splitext(filename)
             if extension:  # Only count files with extensions
-                extension_counter[extension.lower()] += 1  # Increase the count for that extension
+                extension_counter[
+                    extension.lower()
+                ] += 1  # Increase the count for that extension
 
     # Convert bytes to megabytes
-    total_size_mb = round(total_size / (1024 * 1024), 2)
+    total_size_mb: float = round(total_size / (1024 * 1024), 2)
     most_common_extensions: list[tuple[str, int]] = extension_counter.most_common(5)
 
     return Stats(
         folder=os.path.abspath(folder_path),
         num_files=file_count,
         total_size_mb=total_size_mb,
-        most_common_types=most_common_extensions
+        most_common_types=most_common_extensions,
     )
 
 
 def main() -> None:
-    stats = analyse_folder()
+    stats: Stats | None = analyse_folder()
 
     if stats:
         print(f'Folder: {stats.folder}')

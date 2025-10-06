@@ -1,4 +1,3 @@
-
 # 1. Display the options
 def display_menu() -> None:
     print('Note-Taking Application')
@@ -12,8 +11,9 @@ def display_menu() -> None:
 def add_note() -> None:
     note: str = input('Enter your note: ')
     with open('notes.txt', 'a') as file:
-        file.write(note + '\n')
+        file.write(f'{note}\n')
     print('Note added successfully.')
+
 
 # 3. Shows all the currents notes
 def view_notes() -> None:
@@ -29,6 +29,7 @@ def view_notes() -> None:
     except FileNotFoundError:
         print('No notes found.')
 
+
 # 4. Delete notes
 def delete_note() -> None:
     view_notes()
@@ -37,7 +38,9 @@ def delete_note() -> None:
             notes: list[str] = file.readlines()
         if notes:
             note_num: int = int(input('Enter the note number to delete: '))
-            if 1 <= note_num <= len(notes): # make sure user enters a correct line number
+            if (
+                1 <= note_num <= len(notes)
+            ):  # make sure user enters a correct line number
                 del notes[note_num - 1]  # delete correct index
                 with open('notes.txt', 'w') as file:
                     file.writelines(notes)

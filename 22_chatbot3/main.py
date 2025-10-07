@@ -16,20 +16,24 @@ def load_responses() -> list[Response]:
     responses: list[Response] = []
     with open('responses.json') as file:
         for response in json.load(file):
-            responses.append(Response(response['response'],
-                                      response['words'],
-                                      response['required_words']))
+            responses.append(
+                Response(
+                    response['response'], response['words'], response['required_words']
+                )
+            )
 
     return responses
 
 
-# 3. Helper function that processes text by splitting words into a list and lowering them
+# 3. Helper function that processes text by splitting
+# words into a list and lowering them
 def split_text(text: str) -> list[str]:
     return re.split(r'\s+|[,;?!.-]\s*', text.lower())
 
 
 # 4. Check how accurate the bot recognises the user's response
 def match_rating(text: str, response: Response) -> float:
+    text = text.lower()
     score: int = 0
     has_required_words: bool = True
 
@@ -65,7 +69,11 @@ def get_response(text: str, responses: list[Response]) -> str:
 
     # Checks all the keys and returns the one with the highest value
     best_match: str = max(matches, key=matches.get)  # type: ignore
-    return 'I don\'t understand... [0%]' if matches[best_match] == 0 else f'{best_match} [{matches[best_match]:.0%}]'
+    return (
+        'I don\'t understand... [0%]'
+        if matches[best_match] == 0
+        else f'{best_match} [{matches[best_match]:.0%}]'
+    )
 
 
 # 6. Run the script and enjoy

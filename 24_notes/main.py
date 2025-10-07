@@ -48,7 +48,7 @@ def delete_note() -> None:
             else:
                 print('Invalid note number.')
     except FileNotFoundError:
-        print('No notes found.')
+        print('No file found...')  # Updated this!
     except ValueError:
         print('Please enter a valid number.')
 

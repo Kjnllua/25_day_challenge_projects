@@ -69,11 +69,11 @@ def get_response(text: str, responses: list[Response]) -> str:
 
     # Checks all the keys and returns the one with the highest value
     best_match: str = max(matches, key=matches.get)  # type: ignore
-    return (
-        'I don\'t understand... [0%]'
-        if matches[best_match] == 0
-        else f'{best_match} [{matches[best_match]:.0%}]'
-    )
+    
+    if matches[best_match] == 0:
+        return 'I don\'t understand... [0%]'
+    else:
+        return f'{best_match} [{matches[best_match]:.0%}]'
 
 
 # 6. Run the script and enjoy

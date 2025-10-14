@@ -12,8 +12,8 @@ converted_to_f = (celsius_input * CELSIUS_TO_FAHRENHEIT) + OFFSET
 converted_to_c = (fahrenheit_input - OFFSET) * FAHRENHEIT_TO_CELSIUS
 
 # Display
-print(f'{celsius_input}°C -> {converted_to_f:.1f}°F')
-print(f'{fahrenheit_input}°F -> {converted_to_c:.1f}°C')
+print(f"{celsius_input}°C -> {converted_to_f:.1f}°F")
+print(f"{fahrenheit_input}°F -> {converted_to_c:.1f}°C")
 
 # HOMEWORK:
 # Your homework is to create a miles-to-kilometers converter in Python!
@@ -24,16 +24,3 @@ print(f'{fahrenheit_input}°F -> {converted_to_c:.1f}°C')
 #
 # Remember, the homework is optional—but doing it will help you
 # learn Python much faster than just watching me code.
-usr = input("Is it kilometers(kms) or miles(m)? ")
-distance = float(input("What's the distance? "))
-
-if usr.lower() == "kms":
-    d = distance / 1.609344
-    unit = "miles"
-    print(f"Converted distance is {d}{unit}")
-elif usr.lower() == "m":
-    d = distance * 1.609344
-    unit = "kms"
-    print(f"Converted distance is {d}{unit}")
-else:
-    print("Error: Invalid unit. Please use 'kms' or 'm'.")

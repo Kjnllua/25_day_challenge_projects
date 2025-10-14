@@ -24,3 +24,16 @@ print(f'{fahrenheit_input}°F -> {converted_to_c:.1f}°C')
 #
 # Remember, the homework is optional—but doing it will help you
 # learn Python much faster than just watching me code.
+usr = input("Is it kilometers(kms) or miles(m)? ")
+distance = float(input("What's the distance? "))
+
+if usr.lower() == "kms":
+    d = distance / 1.609344
+    unit = "miles"
+    print(f"Converted distance is {d}{unit}")
+elif usr.lower() == "m":
+    d = distance * 1.609344
+    unit = "kms"
+    print(f"Converted distance is {d}{unit}")
+else:
+    print("Error: Invalid unit. Please use 'kms' or 'm'.")
